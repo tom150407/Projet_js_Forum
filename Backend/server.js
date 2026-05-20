@@ -1,11 +1,27 @@
-const http = require("http");
+const express = require("express");
+const path = require("path");
+require("dotenv").config({ path: path.join(__dirname, ".env") });
 
-const server = http.createServer((req, res) => {
-  res.statusCode = 200;
-  res.setHeader("Content-Type", "text/plain");
-  res.end("Le serveur Node fonctionne !");
-});
+const db = require("./config/db");
+const authRouter = require("./router/authRouter");
+const topicRouter = require("./router/topicRouter");
+const tagRouter = require("./router/tagRouter"); // NOUVEAU
 
-server.listen(3000, "127.0.0.1", () => {
-  console.log("Serveur actif sur http://127.0.0.1:3000/");
-});
+const app = express();
+const PORT = process.env.PORT || 3000;
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, "../frontend")));
+
+app.use("/api/auth", authRouter);
+app.use("/api/topics", topicRouter);
+app.use("/api/tags", tagRouter); // NOUVEAU
+
+app.get("/", (req, res) =>
+  res.sendFile(path.join(__dirname, "../frontend/index.html")),
+);
+
+app.listen(PORT, () =>
+  console.log(`🚀 Serveur démarré sur http://localhost:${PORT}`),
+);
