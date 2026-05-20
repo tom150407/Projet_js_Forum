@@ -1,0 +1,380 @@
+/* ==========================================================================
+   VARIABLES ET CONFIGURATION GLOBALE
+   ========================================================================== */
+:root {
+  --primary-color: #2e7d32; /* Vert forêt pour le thème nature/pattes */
+  --primary-hover: #1b5e20;
+  --secondary-color: #3e2723; /* Brun terre pour les textes importants/titres */
+  --bg-color: #fcfbfa; /* Blanc cassé très doux pour les yeux */
+  --card-bg: #ffffff;
+  --text-color: #333333;
+  --text-light: #666666;
+  --border-color: #e0dcd8;
+  --success-color: #4caf50;
+  --error-color: #f44336;
+  --admin-color: #212121;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial,
+    sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  line-height: 1.6;
+  padding-bottom: 60px;
+}
+
+/* ==========================================================================
+   HEADER & NAVIGATION
+   ========================================================================== */
+header {
+  background-color: var(--secondary-color);
+  color: #ffffff;
+  padding: 1.5rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
+}
+
+header h1 {
+  font-size: 1.8rem;
+}
+
+header nav a {
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: bold;
+  transition: opacity 0.2s;
+}
+
+header nav a:hover {
+  opacity: 0.8;
+}
+
+/* ==========================================================================
+   STRUCTURE PRINCIPALE (CONTAINER)
+   ========================================================================== */
+main {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+h2,
+h3,
+h4 {
+  color: var(--secondary-color);
+  margin-bottom: 1rem;
+}
+
+h2 {
+  font-size: 1.6rem;
+  border-bottom: 2px solid var(--border-color);
+  padding-bottom: 0.5rem;
+  margin-top: 2rem;
+}
+
+/* ==========================================================================
+   FORMULAIRES (Inscription, Connexion, Topics, Réponses)
+   ========================================================================== */
+form {
+  background: var(--card-bg);
+  padding: 1.5rem;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+  margin-bottom: 1.5rem;
+}
+
+form div {
+  margin-bottom: 1.2rem;
+}
+
+label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+  color: var(--secondary-color);
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+textarea,
+select {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 1rem;
+  background-color: #fafafa;
+  transition:
+    border-color 0.2s,
+    background-color 0.2s;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  background-color: #ffffff;
+}
+
+/* ==========================================================================
+   BOUTONS
+   ========================================================================== */
+button {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 6px;
+  cursor: pointer;
+  transition:
+    background-color 0.2s,
+    transform 0.1s;
+}
+
+button:hover {
+  background-color: var(--primary-hover);
+}
+
+button:active {
+  transform: scale(0.98);
+}
+
+/* Boutons secondaires et spécifiques */
+button[style*="color: red"],
+button[style*="color:red"] {
+  background-color: transparent !important;
+  color: var(--error-color) !important;
+  border: 1px solid var(--error-color);
+  padding: 0.4rem 0.8rem;
+  font-size: 0.85rem;
+}
+
+button[style*="color: red"]:hover,
+button[style*="color:red"]:hover {
+  background-color: #fdf2f2 !important;
+}
+
+/* ==========================================================================
+   ZONE ZONE UTILISATEUR & ALERTES
+   ========================================================================== */
+#user-info {
+  background-color: #f0f4f1 !important;
+  border-left: 4px solid var(--primary-color);
+  padding: 1rem !important;
+  border-radius: 4px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#user-info p {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#logout-btn {
+  background-color: #9e9e9e;
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+}
+
+#logout-btn:hover {
+  background-color: #757575;
+}
+
+/* Messages d'erreur et succès en direct */
+#register-message,
+#login-message,
+#topic-message,
+#reply-message {
+  font-weight: bold;
+  margin-top: 1rem;
+  padding: 0.5rem;
+  border-radius: 4px;
+}
+
+/* ==========================================================================
+   LISTE DES TOPICS & CARTES
+   ========================================================================== */
+#topics-container {
+  margin-top: 1rem;
+}
+
+#topics-container > div,
+.topic-card {
+  background: var(--card-bg) !important;
+  border: 1px solid var(--border-color) !important;
+  border-radius: 8px !important;
+  padding: 1.5rem !important;
+  margin: 1rem 0 !important;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.02) !important;
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
+}
+
+#topics-container > div:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05) !important;
+}
+
+#topics-container h3 a {
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+#topics-container h3 a:hover {
+  text-decoration: underline;
+}
+
+#topics-container p {
+  color: var(--text-light);
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+}
+
+/* ==========================================================================
+   PAGE SUJET ET MESSAGES (DÉTAILS COIN CONVERSATION)
+   ========================================================================== */
+#topic-header {
+  background-color: #ffffff !important;
+  border: 1px solid var(--border-color) !important;
+  border-radius: 8px;
+  padding: 1.8rem !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+}
+
+#topic-meta {
+  color: var(--text-light);
+  font-size: 0.9rem;
+  margin: 0.5rem 0;
+}
+
+#topic-tags {
+  background-color: #e8f5e9 !important;
+  color: var(--primary-color) !important;
+  font-weight: bold;
+  display: inline-block;
+  margin-bottom: 1rem;
+}
+
+#topic-content {
+  line-height: 1.7;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-color);
+}
+
+/* Conteneur des réponses */
+#messages-container > div {
+  background: #ffffff;
+  border: 1px solid var(--border-color) !important;
+  border-radius: 8px;
+  padding: 1.2rem !important;
+  margin: 1rem 0 !important;
+}
+
+/* Système de Vote */
+div[style*="font-size: 0.9em"] {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 1rem;
+  padding-top: 0.8rem;
+  border-top: 1px dashed var(--border-color);
+  color: var(--text-light);
+}
+
+div[style*="font-size: 0.9em"] button {
+  background: #f5f5f5;
+  color: #333;
+  padding: 0.4rem 0.8rem;
+  font-size: 0.85rem;
+  border: 1px solid var(--border-color);
+}
+
+div[style*="font-size: 0.9em"] button:hover {
+  background: #e0e0e0;
+}
+
+/* ==========================================================================
+   BARRE DE RECHERCHE ET PAGINATION
+   ========================================================================== */
+div[style*="background: #f5f5f5"],
+div[style*="background: rgb(245, 245, 245)"] {
+  background-color: #ffffff !important;
+  border: 1px solid var(--border-color) !important;
+  padding: 1rem !important;
+  border-radius: 8px;
+}
+
+#search-input {
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  padding: 0.5rem;
+}
+
+#pagination-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  margin-top: 2rem !important;
+}
+
+#pagination-controls button {
+  background-color: #ffffff;
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+}
+
+#pagination-controls button:hover {
+  background-color: #f5f5f5;
+}
+
+/* ==========================================================================
+   TABLEAUX (DASHBOARD ADMIN)
+   ========================================================================== */
+table {
+  border-collapse: collapse;
+  background: #ffffff;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--border-color) !important;
+}
+
+th,
+td {
+  padding: 1rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+th {
+  background-color: var(--admin-color);
+  color: white;
+  font-weight: bold;
+}
+
+tr:hover td {
+  background-color: #fafafa;
+}

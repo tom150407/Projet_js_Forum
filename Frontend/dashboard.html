@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Dashboard Admin - Forum des Pattes</title>
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>🛠️ Dashboard Administrateur</h1>
+      <nav><a href="/">Retour à l'accueil du forum</a></nav>
+    </header>
+    <main>
+      <h2>Gestion des Utilisateurs</h2>
+      <table
+        border="1"
+        style="width: 100%; text-align: left; margin-bottom: 30px"
+      >
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Pseudo</th>
+            <th>Email</th>
+            <th>Rôle</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody id="admin-users-list">
+          <tr>
+            <td colspan="5">Chargement...</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>Gestion des Topics</h2>
+      <div id="admin-topics-list">Chargement...</div>
+    </main>
+    <script src="/js/dashboard.js"></script>
+  </body>
+</html>

@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sujet - Forum des Pattes</title>
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>🐾 Le Forum des Pattes</h1>
+      <nav><a href="/">Retour à l'accueil</a></nav>
+    </header>
+
+    <main>
+      <section
+        id="topic-header"
+        style="
+          background-color: #f9f9f9;
+          padding: 15px;
+          border: 1px solid #ccc;
+          margin-bottom: 20px;
+        "
+      >
+        <h2 id="topic-title">Chargement...</h2>
+        <p id="topic-meta"></p>
+        <span
+          id="topic-tags"
+          style="
+            background: #e0e0e0;
+            padding: 3px 8px;
+            border-radius: 10px;
+            font-size: 0.8em;
+          "
+        ></span>
+        <div
+          id="topic-content"
+          style="margin-top: 15px; font-size: 1.1em"
+        ></div>
+
+        <div
+          id="owner-controls"
+          style="
+            display: none;
+            margin-top: 15px;
+            padding-top: 10px;
+            border-top: 1px solid #ddd;
+          "
+        >
+          <button onclick="editTopic()">Modifier le sujet</button>
+          <button onclick="deleteTopic()" style="color: red; margin-left: 10px">
+            Supprimer le sujet
+          </button>
+        </div>
+      </section>
+
+      <div
+        style="
+          display: flex;
+          justify-content: space-between;
+          margin-bottom: 10px;
+        "
+      >
+        <h3>Réponses :</h3>
+        <div style="text-align: right">
+          <label>Trier par :</label>
+          <select
+            id="msg-sort"
+            onchange="
+              currentPage = 1;
+              loadMessages();
+            "
+          >
+            <option value="newest">Plus récent</option>
+            <option value="oldest">Plus ancien</option>
+            <option value="popular">Popularité</option></select
+          ><br />
+          <label>Afficher :</label>
+          <select
+            id="msg-limit"
+            onchange="
+              currentPage = 1;
+              loadMessages();
+            "
+          >
+            <option value="10">10</option>
+            <option value="20">20</option>
+            <option value="30">30</option>
+            <option value="all">Tous</option>
+          </select>
+        </div>
+      </div>
+
+      <section id="messages-container"></section>
+      <div id="pagination-controls" style="margin-top: 15px">
+        <button onclick="changePage(-1)">Précédent</button>
+        <span id="current-page" style="margin: 0 10px; font-weight: bold"
+          >Page 1</span
+        >
+        <button onclick="changePage(1)">Suivant</button>
+      </div>
+
+      <section
+        id="reply-section"
+        style="
+          display: none;
+          margin-top: 30px;
+          border-top: 2px dashed #ccc;
+          padding-top: 15px;
+        "
+      >
+        <h4>Répondre</h4>
+        <form id="reply-form">
+          <textarea
+            id="reply-content"
+            rows="4"
+            style="width: 100%"
+            required
+          ></textarea
+          ><br /><br />
+          <button type="submit">Envoyer</button>
+        </form>
+        <p id="reply-message"></p>
+      </section>
+      <p id="login-prompt" style="display: none">
+        <i><a href="/auth.html">Connecte-toi</a> pour répondre.</i>
+      </p>
+    </main>
+    <script src="/js/topic.js"></script>
+  </body>
+</html>
